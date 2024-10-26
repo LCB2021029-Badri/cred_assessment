@@ -12,7 +12,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         stackView = findViewById(R.id.stack_view)
-        val adapter = MainAdapter(numberWord(), numberImage(), R.layout.item_view, this)
+
+        // Create a list of NumberItem
+        val items = numberWord().zip(numberImage()) { word, image ->
+            NumberItem(word, image)
+        }
+
+        val adapter = MainAdapter(items, R.layout.item_view, this)
         stackView.adapter = adapter
     }
 
@@ -25,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             R.drawable.ic_launcher_background,
             R.drawable.ic_launcher_background,
             R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background
         )
     }
 }
